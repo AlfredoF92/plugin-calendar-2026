@@ -88,14 +88,15 @@
 	line-height: 1;
 	cursor: pointer;
 	padding: 0.2rem 0.45rem;
-	transition: color 0.15s ease, opacity 0.15s ease;
+	border-radius: 6px;
+	transition: background 0.15s ease, color 0.15s ease;
 }
 
 .pmi-events-calendar__nav-btn:hover,
 .pmi-events-calendar__nav-btn:focus {
-	color: var(--pmi-cyan);
+	background: var(--pmi-purple);
+	color: #fff;
 	outline: none;
-	opacity: 0.85;
 }
 
 /* Weekday row */
@@ -177,12 +178,13 @@
 	background: #fff;
 }
 
-.pmi-events-calendar__day--has-events:not(.pmi-events-calendar__day--today):hover {
-	color: var(--pmi-cyan-dark);
+.pmi-events-calendar__day:not(.pmi-events-calendar__day--adjacent):not(.pmi-events-calendar__day--today):hover {
+	background: var(--pmi-purple);
+	color: #fff;
 }
 
-.pmi-events-calendar__day:not(.pmi-events-calendar__day--adjacent):not(.pmi-events-calendar__day--today):hover {
-	background: rgba(0, 187, 214, 0.1);
+.pmi-events-calendar__day:not(.pmi-events-calendar__day--adjacent):not(.pmi-events-calendar__day--today):hover .pmi-events-calendar__day-dot {
+	background: #fff;
 }
 
 /* Selected: nessun cerchio extra se non è oggi */
@@ -239,7 +241,7 @@
 }
 
 .pmi-events-calendar__item-title {
-	display: block;
+	display: inline-block;
 	font-size: 0.82rem;
 	font-weight: 700;
 	color: var(--pmi-cyan);
@@ -247,12 +249,18 @@
 	line-height: 1.45;
 	text-transform: uppercase;
 	letter-spacing: 0.01em;
+	border-radius: 4px;
+	padding: 0.1rem 0.3rem;
+	margin: 0 0 0 -0.3rem;
+	transition: background 0.15s ease, color 0.15s ease;
 }
 
 .pmi-events-calendar__item-title:hover,
 .pmi-events-calendar__item-title:focus {
-	color: var(--pmi-cyan-dark);
+	background: var(--pmi-purple);
+	color: #fff;
 	text-decoration: none;
+	outline: none;
 }
 
 .pmi-events-calendar__empty {
@@ -269,16 +277,22 @@
 }
 
 .pmi-events-calendar__footer-link {
+	display: inline-block;
 	color: var(--pmi-orange);
 	font-size: 0.88rem;
 	font-weight: 400;
 	text-decoration: underline;
 	text-underline-offset: 2px;
+	border-radius: 4px;
+	padding: 0.15rem 0.4rem;
+	transition: background 0.15s ease, color 0.15s ease;
 }
 
 .pmi-events-calendar__footer-link:hover,
 .pmi-events-calendar__footer-link:focus {
-	color: #bf6824;
+	background: var(--pmi-purple);
+	color: #fff;
+	outline: none;
 }
 
 .pmi-events-calendar.is-loading {
