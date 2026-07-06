@@ -194,17 +194,12 @@
 .pmi-events-full-calendar__event {
 	cursor: pointer;
 	line-height: 1.3;
-	border-radius: 4px;
-	padding: 0.1rem 0.25rem;
-	margin: 0 -0.25rem;
-	transition: background 0.15s ease, color 0.15s ease;
 }
 
 .pmi-events-full-calendar__event-time {
 	display: block;
 	font-size: 0.68rem;
 	color: var(--pmi-fc-muted);
-	transition: color 0.15s ease;
 }
 
 .pmi-events-full-calendar__event-title {
@@ -212,28 +207,17 @@
 	font-size: 0.74rem;
 	font-weight: 600;
 	color: var(--pmi-fc-cyan);
-	transition: color 0.15s ease;
-}
-
-.pmi-events-full-calendar__event:hover,
-.pmi-events-full-calendar__event:focus {
-	background: var(--pmi-fc-purple);
-	outline: none;
 }
 
 .pmi-events-full-calendar__event:hover .pmi-events-full-calendar__event-title,
-.pmi-events-full-calendar__event:focus .pmi-events-full-calendar__event-title,
-.pmi-events-full-calendar__event:hover .pmi-events-full-calendar__event-time,
-.pmi-events-full-calendar__event:focus .pmi-events-full-calendar__event-time,
-.pmi-events-full-calendar__event:hover .pmi-events-full-calendar__event-location,
-.pmi-events-full-calendar__event:focus .pmi-events-full-calendar__event-location {
-	color: #fff;
+.pmi-events-full-calendar__event:focus .pmi-events-full-calendar__event-title {
+	text-decoration: underline;
+	outline: none;
 }
 
 .pmi-events-full-calendar__event-location {
 	font-weight: 400;
 	color: var(--pmi-fc-muted);
-	transition: color 0.15s ease;
 }
 
 .pmi-events-full-calendar__more {
@@ -300,28 +284,21 @@
 
 .pmi-events-full-calendar-popup__close {
 	position: absolute;
-	top: 0.75rem;
-	right: 0.85rem;
+	top: 0.85rem;
+	right: 0.95rem;
 	appearance: none;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	width: 2rem;
-	height: 2rem;
 	border: 0;
-	border-radius: 50%;
 	background: transparent;
 	font-size: 1.5rem;
 	line-height: 1;
 	color: var(--pmi-color-dark, #2b2b2b);
 	cursor: pointer;
-	transition: background 0.15s ease, color 0.15s ease;
+	transition: color 0.15s ease;
 }
 
 .pmi-events-full-calendar-popup__close:hover,
 .pmi-events-full-calendar-popup__close:focus {
-	background: var(--pmi-color-purple, #4f17a8);
-	color: #fff;
+	color: var(--pmi-color-purple, #4f17a8);
 	outline: none;
 }
 
@@ -353,22 +330,17 @@
 }
 
 .pmi-events-full-calendar-popup__body .pmi-events-calendar__item-title {
-	display: inline-block;
+	display: block;
 	font-size: 0.9rem;
 	font-weight: 700;
 	color: var(--pmi-color-cyan, #05bfdf);
 	text-decoration: none;
 	text-transform: uppercase;
-	border-radius: 4px;
-	padding: 0.1rem 0.3rem;
-	margin: 0 0 0 -0.3rem;
-	transition: background 0.15s ease, color 0.15s ease;
 }
 
 .pmi-events-full-calendar-popup__body .pmi-events-calendar__item-title:hover,
 .pmi-events-full-calendar-popup__body .pmi-events-calendar__item-title:focus {
-	background: var(--pmi-color-purple, #4f17a8);
-	color: #fff;
+	text-decoration: underline;
 	outline: none;
 }
 
