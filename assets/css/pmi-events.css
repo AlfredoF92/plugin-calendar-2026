@@ -1,0 +1,302 @@
+/**
+ * PMI Events – calendar widget (PMI Portugal style).
+ */
+
+.pmi-events-calendar-wrap {
+	--pmi-calendar-width: 480px;
+
+	width: var(--pmi-calendar-width);
+	max-width: 100%;
+	flex: 0 0 auto;
+}
+
+.pmi-events-calendar {
+	--pmi-cyan: var(--pmi-color-cyan, #05bfdf);
+	--pmi-cyan-dark: #049bb5;
+	--pmi-purple: var(--pmi-color-purple, #4f17a8);
+	--pmi-orange: var(--pmi-color-orange, #ff6110);
+	--pmi-text: var(--pmi-color-dark, #2b2b2b);
+	--pmi-muted: #b0b0b0;
+	--pmi-meta: #7a7a7a;
+	--pmi-border: #e3e3e3;
+	--pmi-radius: 12px;
+	--pmi-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 12px 32px rgba(0, 0, 0, 0.08);
+
+	box-sizing: border-box;
+	width: 100%;
+	max-width: none;
+	font-family: var(--pmi-font-family, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif);
+	color: var(--pmi-text);
+	background: #fff;
+	border-radius: var(--pmi-radius);
+	box-shadow: var(--pmi-shadow);
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	overflow: hidden;
+}
+
+.pmi-events-calendar *,
+.pmi-events-calendar *::before,
+.pmi-events-calendar *::after {
+	box-sizing: border-box;
+}
+
+/* Header */
+.pmi-events-calendar__header {
+	background: var(--pmi-cyan);
+	color: #fff;
+	font-size: 0.72rem;
+	font-weight: 700;
+	line-height: 1.35;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	text-align: center;
+	padding: 0.95rem 1.25rem;
+}
+
+/* Body */
+.pmi-events-calendar__body {
+	background: #fff;
+	padding: 1.45rem 1.6rem 1.55rem;
+}
+
+/* Month navigation */
+.pmi-events-calendar__nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 1.1rem;
+	padding: 0 0.15rem;
+}
+
+.pmi-events-calendar__month {
+	flex: 1;
+	font-size: 1.05rem;
+	font-weight: 400;
+	color: #1a1a1a;
+	text-align: center;
+	text-transform: capitalize;
+	line-height: 1.2;
+}
+
+.pmi-events-calendar__nav-btn {
+	appearance: none;
+	border: 0;
+	background: transparent;
+	color: #1a1a1a;
+	font-size: 1.35rem;
+	font-weight: 300;
+	line-height: 1;
+	cursor: pointer;
+	padding: 0.2rem 0.45rem;
+	transition: color 0.15s ease, opacity 0.15s ease;
+}
+
+.pmi-events-calendar__nav-btn:hover,
+.pmi-events-calendar__nav-btn:focus {
+	color: var(--pmi-cyan);
+	outline: none;
+	opacity: 0.85;
+}
+
+/* Weekday row */
+.pmi-events-calendar__weekdays {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 0;
+	margin-bottom: 0.55rem;
+	text-align: center;
+}
+
+.pmi-events-calendar__weekdays span {
+	font-size: 0.8rem;
+	font-weight: 400;
+	color: var(--pmi-muted);
+	line-height: 1;
+}
+
+/* Date grid */
+.pmi-events-calendar__grid {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	row-gap: 0.45rem;
+	margin-bottom: 1.5rem;
+}
+
+.pmi-events-calendar__day {
+	appearance: none;
+	border: 0;
+	background: transparent;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 2.55rem;
+	height: 2.55rem;
+	margin: 0 auto;
+	padding: 0;
+	border-radius: 50%;
+	cursor: pointer;
+	font: inherit;
+	color: #2b2b2b;
+	transition: background 0.15s ease, color 0.15s ease;
+}
+
+.pmi-events-calendar__day--adjacent {
+	cursor: default;
+	color: var(--pmi-muted);
+	pointer-events: none;
+}
+
+.pmi-events-calendar__day-number {
+	position: relative;
+	z-index: 1;
+	font-size: 0.92rem;
+	font-weight: 400;
+	line-height: 1;
+}
+
+.pmi-events-calendar__day-dot {
+	position: absolute;
+	bottom: 0.2rem;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+	background: var(--pmi-cyan);
+}
+
+/* Today = cerchio cyan (come nello screenshot) */
+.pmi-events-calendar__day--today {
+	background: var(--pmi-cyan);
+	color: #fff;
+}
+
+.pmi-events-calendar__day--today .pmi-events-calendar__day-dot {
+	background: #fff;
+}
+
+.pmi-events-calendar__day--has-events:not(.pmi-events-calendar__day--today):hover {
+	color: var(--pmi-cyan-dark);
+}
+
+.pmi-events-calendar__day:not(.pmi-events-calendar__day--adjacent):not(.pmi-events-calendar__day--today):hover {
+	background: rgba(0, 187, 214, 0.1);
+}
+
+/* Selected: nessun cerchio extra se non è oggi */
+.pmi-events-calendar__day--selected:not(.pmi-events-calendar__day--today) {
+	font-weight: 600;
+}
+
+/* Events section */
+.pmi-events-calendar__events {
+	padding-top: 0.25rem;
+}
+
+.pmi-events-calendar__events-date {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	margin: 0 0 0.85rem;
+	min-height: 1.5rem;
+}
+
+.pmi-events-calendar__events-date-text {
+	flex: 0 0 auto;
+	font-size: 1.45rem;
+	font-weight: 700;
+	color: var(--pmi-purple);
+	line-height: 1.1;
+	text-transform: capitalize;
+}
+
+.pmi-events-calendar__events-date-line {
+	flex: 1 1 auto;
+	height: 1px;
+	background: var(--pmi-border);
+	margin-top: 0.15rem;
+}
+
+.pmi-events-calendar__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.pmi-events-calendar__item + .pmi-events-calendar__item {
+	margin-top: 0.9rem;
+}
+
+.pmi-events-calendar__item-time {
+	display: block;
+	font-size: 0.78rem;
+	font-weight: 400;
+	color: var(--pmi-meta);
+	margin-bottom: 0.35rem;
+	line-height: 1.4;
+}
+
+.pmi-events-calendar__item-title {
+	display: block;
+	font-size: 0.82rem;
+	font-weight: 700;
+	color: var(--pmi-cyan);
+	text-decoration: none;
+	line-height: 1.45;
+	text-transform: uppercase;
+	letter-spacing: 0.01em;
+}
+
+.pmi-events-calendar__item-title:hover,
+.pmi-events-calendar__item-title:focus {
+	color: var(--pmi-cyan-dark);
+	text-decoration: none;
+}
+
+.pmi-events-calendar__empty {
+	margin: 0;
+	font-size: 0.85rem;
+	color: var(--pmi-meta);
+	line-height: 1.4;
+}
+
+/* Footer link */
+.pmi-events-calendar__footer {
+	margin-top: 1.35rem;
+	text-align: center;
+}
+
+.pmi-events-calendar__footer-link {
+	color: var(--pmi-orange);
+	font-size: 0.88rem;
+	font-weight: 400;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+.pmi-events-calendar__footer-link:hover,
+.pmi-events-calendar__footer-link:focus {
+	color: #bf6824;
+}
+
+.pmi-events-calendar.is-loading {
+	opacity: 0.6;
+	pointer-events: none;
+}
+
+@media (max-width: 640px) {
+	.pmi-events-calendar-wrap {
+		width: 100%;
+	}
+
+	.pmi-events-calendar__body {
+		padding: 1.15rem 1.1rem 1.25rem;
+	}
+
+	.pmi-events-calendar__day {
+		width: 2.35rem;
+		height: 2.35rem;
+	}
+}

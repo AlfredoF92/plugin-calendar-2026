@@ -1,0 +1,51 @@
+/**
+ * PMI Events – wp-admin styles.
+ */
+
+.pmi-events-meta-grid {
+	display: grid;
+	gap: 1rem;
+}
+
+.pmi-events-meta-row {
+	margin: 0;
+}
+
+.pmi-events-meta-row label {
+	display: block;
+	margin-bottom: 0.35rem;
+}
+
+.pmi-events-meta-row .description {
+	display: block;
+	margin-top: 0.35rem;
+	color: #646970;
+}
+
+.pmi-events-meta-row input[type="date"],
+.pmi-events-meta-row input[type="time"],
+.pmi-events-meta-row input[type="text"],
+.pmi-events-meta-row input[type="url"] {
+	max-width: 100%;
+}
+
+.post-type-pmi_event #postexcerpt .inside {
+	margin-top: 0;
+}
+
+.post-type-pmi_event .column-event_date,
+.post-type-pmi_event .column-event_time {
+	width: 10%;
+}
+
+.post-type-pmi_event .column-location {
+	width: 16%;
+}
+
+.post-type-pmi_event .column-registration {
+	width: 10%;
+}
+
+.pmi-events-admin-missing {
+	color: #a7aaad;
+}

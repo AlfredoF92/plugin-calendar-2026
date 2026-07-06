@@ -1,0 +1,381 @@
+/**
+ * PMI Events – calendario mensile a griglia estesa.
+ */
+
+.pmi-events-full-calendar {
+	--pmi-fc-purple: var(--pmi-color-purple, #4f17a8);
+	--pmi-fc-orange: var(--pmi-color-orange, #ff6110);
+	--pmi-fc-cyan: var(--pmi-color-cyan, #05bfdf);
+	--pmi-fc-dark: var(--pmi-color-dark, #2b2b2b);
+	--pmi-fc-muted: #9a9a9a;
+	--pmi-fc-border: #e5e5e5;
+
+	box-sizing: border-box;
+	width: 100%;
+	font-family: var(--pmi-font-family, "Segoe UI", Roboto, sans-serif);
+	color: var(--pmi-fc-dark);
+	background: #fff;
+	border: 1px solid var(--pmi-fc-border);
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+.pmi-events-full-calendar *,
+.pmi-events-full-calendar *::before,
+.pmi-events-full-calendar *::after {
+	box-sizing: border-box;
+}
+
+.pmi-events-full-calendar__toolbar {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 1.1rem 1.5rem;
+	border-bottom: 1px solid var(--pmi-fc-border);
+	flex-wrap: wrap;
+}
+
+.pmi-events-full-calendar__nav {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.pmi-events-full-calendar__nav-btn {
+	appearance: none;
+	border: 1px solid var(--pmi-fc-border);
+	background: #fff;
+	color: var(--pmi-fc-dark);
+	font-size: 1.15rem;
+	line-height: 1;
+	width: 2.1rem;
+	height: 2.1rem;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.pmi-events-full-calendar__nav-btn:hover,
+.pmi-events-full-calendar__nav-btn:focus {
+	border-color: var(--pmi-fc-cyan);
+	color: var(--pmi-fc-cyan);
+	outline: none;
+}
+
+.pmi-events-full-calendar__today-btn {
+	appearance: none;
+	border: 1px solid var(--pmi-fc-border);
+	background: #fff;
+	color: var(--pmi-fc-dark);
+	font-family: inherit;
+	font-size: 0.8rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+	padding: 0.5rem 0.9rem;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: border-color 0.15s ease, color 0.15s ease, opacity 0.15s ease;
+}
+
+.pmi-events-full-calendar__today-btn:hover,
+.pmi-events-full-calendar__today-btn:focus {
+	border-color: var(--pmi-fc-cyan);
+	color: var(--pmi-fc-cyan);
+	outline: none;
+}
+
+.pmi-events-full-calendar__today-btn:disabled {
+	opacity: 0.4;
+	cursor: default;
+}
+
+.pmi-events-full-calendar__title {
+	flex: 1 1 auto;
+	margin: 0;
+	font-size: 1.15rem;
+	font-weight: 600;
+	color: var(--pmi-fc-purple);
+	text-align: center;
+	text-transform: capitalize;
+}
+
+.pmi-events-full-calendar__weekdays {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	border-bottom: 1px solid var(--pmi-fc-border);
+}
+
+.pmi-events-full-calendar__weekdays span {
+	padding: 0.65rem 0.5rem;
+	text-align: center;
+	font-size: 0.72rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	color: var(--pmi-fc-muted);
+	text-transform: uppercase;
+}
+
+.pmi-events-full-calendar__grid {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+}
+
+.pmi-events-full-calendar__cell {
+	position: relative;
+	min-height: 7.5rem;
+	padding: 0.55rem 0.5rem;
+	border-right: 1px solid var(--pmi-fc-border);
+	border-bottom: 1px solid var(--pmi-fc-border);
+	overflow: hidden;
+}
+
+.pmi-events-full-calendar__grid .pmi-events-full-calendar__cell:nth-child(7n) {
+	border-right: 0;
+}
+
+.pmi-events-full-calendar__cell--adjacent {
+	background: #fafafa;
+	color: var(--pmi-fc-muted);
+}
+
+.pmi-events-full-calendar__cell--adjacent .pmi-events-full-calendar__day-number {
+	color: var(--pmi-fc-muted);
+}
+
+.pmi-events-full-calendar__day-number {
+	display: inline-block;
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--pmi-fc-dark);
+	margin-bottom: 0.4rem;
+}
+
+.pmi-events-full-calendar__day-badge {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 1.6rem;
+	height: 1.6rem;
+	padding: 0 0.35rem;
+	border-radius: 50%;
+	background: var(--pmi-fc-cyan);
+	color: #fff;
+}
+
+.pmi-events-full-calendar__events {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+}
+
+.pmi-events-full-calendar__event {
+	cursor: pointer;
+	line-height: 1.3;
+}
+
+.pmi-events-full-calendar__event-time {
+	display: block;
+	font-size: 0.68rem;
+	color: var(--pmi-fc-muted);
+}
+
+.pmi-events-full-calendar__event-title {
+	display: block;
+	font-size: 0.74rem;
+	font-weight: 600;
+	color: var(--pmi-fc-cyan);
+}
+
+.pmi-events-full-calendar__event:hover .pmi-events-full-calendar__event-title,
+.pmi-events-full-calendar__event:focus .pmi-events-full-calendar__event-title {
+	color: var(--pmi-fc-purple);
+}
+
+.pmi-events-full-calendar__event-location {
+	font-weight: 400;
+	color: var(--pmi-fc-muted);
+}
+
+.pmi-events-full-calendar__more {
+	appearance: none;
+	border: 0;
+	background: transparent;
+	padding: 0.15rem 0;
+	margin-top: 0.15rem;
+	font-family: inherit;
+	font-size: 0.7rem;
+	font-weight: 600;
+	color: var(--pmi-fc-orange);
+	cursor: pointer;
+	text-align: left;
+}
+
+.pmi-events-full-calendar__more:hover,
+.pmi-events-full-calendar__more:focus {
+	text-decoration: underline;
+	outline: none;
+}
+
+.pmi-events-full-calendar.is-loading {
+	opacity: 0.6;
+	pointer-events: none;
+}
+
+/* Popup */
+.pmi-events-full-calendar-popup {
+	position: fixed;
+	inset: 0;
+	z-index: 100000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1.5rem;
+}
+
+.pmi-events-full-calendar-popup[hidden] {
+	display: none;
+}
+
+.pmi-events-full-calendar-popup__overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(43, 43, 43, 0.55);
+}
+
+.pmi-events-full-calendar-popup__panel {
+	position: relative;
+	width: 100%;
+	max-width: 420px;
+	max-height: 80vh;
+	overflow-y: auto;
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25);
+	padding: 1.75rem 1.75rem 1.5rem;
+	font-family: var(--pmi-font-family, "Segoe UI", Roboto, sans-serif);
+}
+
+.pmi-events-full-calendar-popup__close {
+	position: absolute;
+	top: 0.85rem;
+	right: 0.95rem;
+	appearance: none;
+	border: 0;
+	background: transparent;
+	font-size: 1.5rem;
+	line-height: 1;
+	color: var(--pmi-color-dark, #2b2b2b);
+	cursor: pointer;
+}
+
+.pmi-events-full-calendar-popup__close:hover,
+.pmi-events-full-calendar-popup__close:focus {
+	color: var(--pmi-color-cyan, #05bfdf);
+	outline: none;
+}
+
+.pmi-events-full-calendar-popup__date {
+	margin: 0 1.75rem 1rem 0;
+	font-size: 1.35rem;
+	font-weight: 700;
+	color: var(--pmi-color-purple, #4f17a8);
+	text-transform: capitalize;
+}
+
+.pmi-events-full-calendar-popup__body .pmi-events-calendar__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.pmi-events-full-calendar-popup__body .pmi-events-calendar__item + .pmi-events-calendar__item {
+	margin-top: 0.9rem;
+	padding-top: 0.9rem;
+	border-top: 1px solid #eee;
+}
+
+.pmi-events-full-calendar-popup__body .pmi-events-calendar__item-time {
+	display: block;
+	font-size: 0.78rem;
+	color: #7a7a7a;
+	margin-bottom: 0.3rem;
+}
+
+.pmi-events-full-calendar-popup__body .pmi-events-calendar__item-title {
+	display: block;
+	font-size: 0.9rem;
+	font-weight: 700;
+	color: var(--pmi-color-cyan, #05bfdf);
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.pmi-events-full-calendar-popup__body .pmi-events-calendar__item-title:hover,
+.pmi-events-full-calendar-popup__body .pmi-events-calendar__item-title:focus {
+	color: var(--pmi-color-purple, #4f17a8);
+}
+
+.pmi-events-full-calendar-popup__body .pmi-events-calendar__empty {
+	margin: 0;
+	font-size: 0.88rem;
+	color: #7a7a7a;
+}
+
+@media (max-width: 780px) {
+	.pmi-events-full-calendar__cell {
+		min-height: 5.5rem;
+		padding: 0.4rem 0.35rem;
+	}
+
+	.pmi-events-full-calendar__event-title,
+	.pmi-events-full-calendar__event-time {
+		font-size: 0.62rem;
+	}
+
+	.pmi-events-full-calendar__toolbar {
+		justify-content: center;
+	}
+
+	.pmi-events-full-calendar__title {
+		order: -1;
+		flex-basis: 100%;
+	}
+}
+
+@media (max-width: 560px) {
+	.pmi-events-full-calendar__weekdays span {
+		font-size: 0.6rem;
+		padding: 0.5rem 0.2rem;
+	}
+
+	.pmi-events-full-calendar__cell {
+		min-height: 4.25rem;
+	}
+
+	.pmi-events-full-calendar__events {
+		display: none;
+	}
+
+	.pmi-events-full-calendar__cell--has-events {
+		cursor: pointer;
+	}
+
+	.pmi-events-full-calendar__cell--has-events .pmi-events-full-calendar__day-number::after {
+		content: '';
+		display: inline-block;
+		width: 4px;
+		height: 4px;
+		margin-left: 4px;
+		border-radius: 50%;
+		background: var(--pmi-fc-cyan);
+		vertical-align: middle;
+	}
+
+	.pmi-events-full-calendar__more {
+		display: none;
+	}
+}
