@@ -4,7 +4,7 @@ Tags: events, calendar, shortcode
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -64,6 +64,9 @@ Esempio:
 4. Inserisci `[pmi_calendar]` o `[pmi_calendar_full]` in una pagina o in Elementor (widget Shortcode)
 
 == Changelog ==
+
+= 1.4.0 =
+* Nuovi tag dinamici Elementor per costruire il template della pagina evento: Titolo, Descrizione breve, Categoria, Luogo, Organizzatore, Lingua, N. PDU, Prezzo soci, Prezzo non soci, Immagine copertina, URL iscrizione.
 
 = 1.3.0 =
 * Nuovo shortcode `[pmi_calendar_full]`: calendario mensile a griglia estesa con eventi inline e popup di dettaglio.

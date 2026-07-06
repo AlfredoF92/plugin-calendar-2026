@@ -28,7 +28,11 @@ class PMI_Events_Elementor {
 		}
 
 		require_once PMI_EVENTS_DIR . 'includes/class-formatter.php';
+		require_once PMI_EVENTS_DIR . 'includes/elementor/class-dynamic-tag-base.php';
 		require_once PMI_EVENTS_DIR . 'includes/elementor/class-dynamic-tag-datetime.php';
+		require_once PMI_EVENTS_DIR . 'includes/elementor/class-dynamic-tag-fields.php';
+		require_once PMI_EVENTS_DIR . 'includes/elementor/class-dynamic-tag-image.php';
+		require_once PMI_EVENTS_DIR . 'includes/elementor/class-dynamic-tag-registration-url.php';
 
 		add_action( 'elementor/dynamic_tags/register', array( __CLASS__, 'register_dynamic_tags' ) );
 	}
@@ -47,5 +51,16 @@ class PMI_Events_Elementor {
 		);
 
 		$dynamic_tags_manager->register( new PMI_Events_Elementor_Tag_Datetime() );
+		$dynamic_tags_manager->register( new PMI_Events_Elementor_Tag_Title() );
+		$dynamic_tags_manager->register( new PMI_Events_Elementor_Tag_Excerpt() );
+		$dynamic_tags_manager->register( new PMI_Events_Elementor_Tag_Category() );
+		$dynamic_tags_manager->register( new PMI_Events_Elementor_Tag_Location() );
+		$dynamic_tags_manager->register( new PMI_Events_Elementor_Tag_Organizer() );
+		$dynamic_tags_manager->register( new PMI_Events_Elementor_Tag_Language() );
+		$dynamic_tags_manager->register( new PMI_Events_Elementor_Tag_Pdu() );
+		$dynamic_tags_manager->register( new PMI_Events_Elementor_Tag_Price_Members() );
+		$dynamic_tags_manager->register( new PMI_Events_Elementor_Tag_Price_Guests() );
+		$dynamic_tags_manager->register( new PMI_Events_Elementor_Tag_Image() );
+		$dynamic_tags_manager->register( new PMI_Events_Elementor_Tag_Registration_Url() );
 	}
 }

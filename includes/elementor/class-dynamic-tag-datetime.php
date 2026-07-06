@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Outputs formatted event datetime for Elementor widgets.
  */
-class PMI_Events_Elementor_Tag_Datetime extends \Elementor\Core\DynamicTags\Tag {
+class PMI_Events_Elementor_Tag_Datetime extends PMI_Events_Elementor_Tag_Base {
 
 	/**
 	 * Tag identifier.
@@ -28,24 +28,6 @@ class PMI_Events_Elementor_Tag_Datetime extends \Elementor\Core\DynamicTags\Tag 
 	 */
 	public function get_title() {
 		return __( 'Data e ora evento', 'pmi-events' );
-	}
-
-	/**
-	 * Tag group in Elementor panel.
-	 *
-	 * @return string
-	 */
-	public function get_group() {
-		return 'pmi-events';
-	}
-
-	/**
-	 * Supported widget categories.
-	 *
-	 * @return string[]
-	 */
-	public function get_categories() {
-		return array( \Elementor\Modules\DynamicTags\Module::TEXT_CATEGORY );
 	}
 
 	/**
