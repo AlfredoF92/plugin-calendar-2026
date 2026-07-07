@@ -3,7 +3,7 @@
  * Plugin Name:       PMI Events
  * Plugin URI:        https://github.com/pmi/pmi-events
  * Description:       Calendario eventi e archivio podcast con shortcode, CPT dedicati e widget interattivi.
- * Version:           1.5.3
+ * Version:           1.5.4
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            PMI
@@ -15,7 +15,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PMI_EVENTS_VERSION', '1.5.3' );
+define( 'PMI_EVENTS_VERSION', '1.5.4' );
 define( 'PMI_EVENTS_FILE', __FILE__ );
 define( 'PMI_EVENTS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'PMI_EVENTS_URL', plugin_dir_url( __FILE__ ) );

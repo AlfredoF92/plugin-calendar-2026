@@ -39,6 +39,7 @@ class PMI_Events_Elementor {
 		require_once PMI_EVENTS_DIR . 'includes/elementor/class-dynamic-tag-podcast-fields.php';
 		require_once PMI_EVENTS_DIR . 'includes/elementor/class-dynamic-tag-podcast-image.php';
 		require_once PMI_EVENTS_DIR . 'includes/elementor/class-dynamic-tag-podcast-links.php';
+		require_once PMI_EVENTS_DIR . 'includes/elementor/class-dynamic-tag-podcast-urls.php';
 		require_once PMI_EVENTS_DIR . 'includes/elementor/class-dynamic-tag-podcast-video.php';
 
 		add_action( 'elementor/dynamic_tags/register', array( __CLASS__, 'register_dynamic_tags' ) );
@@ -79,13 +80,21 @@ class PMI_Events_Elementor {
 
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Title() );
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Excerpt() );
+		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Content() );
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Episode_Number() );
+		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Episode_Label() );
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Guests() );
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Interviewers() );
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Pdu() );
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Category() );
+		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Publish_Date() );
+		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Permalink() );
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Image() );
+		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Thumbnail_Url() );
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Youtube_Video_Url() );
+		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Youtube_Video_Embed() );
+		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Listening_Links() );
+		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Extra_Links() );
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Link_Apple() );
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Link_Spotify() );
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Link_Youtube() );

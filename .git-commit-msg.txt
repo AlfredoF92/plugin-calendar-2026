@@ -1,5 +1,0 @@
-Aggiunge campo e shortcode video YouTube per episodi podcast
-
-Nuovo campo Video YouTube nel meta box episodio, shortcode [pmi_podcast_video]
-con player responsive e tag dinamico Elementor per l'URL. Include fix permalink
-automatico e supporto Elementor CPT alla v1.5.3.

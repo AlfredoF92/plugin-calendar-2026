@@ -111,6 +111,9 @@ Attributi opzionali:
 
 == Changelog ==
 
+= 1.5.4 =
+* Tag dinamici Elementor PMI Podcast completi: contenuto, data pubblicazione, etichetta episodio, URL episodio, URL copertina, embed video, elenco piattaforme e altri link.
+
 = 1.5.3 =
 * Nuovo campo "Video YouTube" negli episodi podcast (separato dal link piattaforma di ascolto).
 * Nuovo shortcode `[pmi_podcast_video]` per incorporare il video nella pagina episodio.

@@ -292,9 +292,12 @@ class PMI_Podcast_Meta_Boxes {
 				'title'      => get_the_title( $post_id ),
 				'permalink'  => get_permalink( $post_id ),
 				'excerpt'    => get_the_excerpt( $post_id ),
+				'content'    => get_post_field( 'post_content', $post_id ),
 				'thumbnail'  => $thumbnail ? $thumbnail : '',
 				'categories' => is_array( $categories ) ? $categories : array(),
 				'category'   => ( is_array( $categories ) && ! empty( $categories ) ) ? $categories[0] : '',
+				'date'       => get_the_date( '', $post_id ),
+				'date_iso'   => get_the_date( 'c', $post_id ),
 			)
 		);
 	}
