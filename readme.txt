@@ -1,18 +1,18 @@
 === PMI Events ===
 Contributors: pmi
-Tags: events, calendar, shortcode
+Tags: events, calendar, podcast, shortcode
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.4.0
+Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Calendario eventi con shortcode, CPT dedicato e widget interattivo.
+Calendario eventi e gestione episodi podcast con shortcode, CPT dedicati e widget interattivi.
 
 == Description ==
 
-Plugin WordPress autonomo per gestire eventi e mostrare un calendario interattivo in homepage.
+Plugin WordPress autonomo per gestire eventi e podcast, con calendario e griglie interattive per il front-end.
 
 **Funzionalità incluse:**
 
@@ -21,6 +21,8 @@ Plugin WordPress autonomo per gestire eventi e mostrare un calendario interattiv
 * Shortcode calendario: `[pmi_calendar]`
 * Navigazione mensile AJAX
 * Selezione giorno con elenco eventi
+* Custom Post Type `pmi_podcast` per gli episodi del podcast (solo back-end al momento)
+* Meta campi podcast: numero episodio, ospiti, intervistatori, PDU, link alle piattaforme di ascolto (con icone) e link extra illimitati
 
 **Shortcode**
 
@@ -56,14 +58,39 @@ Esempio:
 
 `[pmi_calendar_full event_limit="3"]`
 
+**Shortcode griglia podcast**
+
+`[pmi_podcast_grid]`
+
+Mostra una griglia di card con gli ultimi episodi (immagine, numero episodio, titolo, ospiti, descrizione, PDU e icone delle piattaforme di ascolto).
+
+Attributi opzionali:
+
+* `title` – titolo sopra la griglia (default: vuoto)
+* `posts_per_page` – numero di episodi mostrati (default: 6)
+* `category` – slug della categoria podcast da filtrare
+* `columns` – colonne della griglia da desktop, 2-4 (default: 3)
+* `archive_link` – mostra il link "Vedi tutti gli episodi" (yes/no, default: yes)
+* `archive_label` – testo del link archivio
+
+Esempio:
+
+`[pmi_podcast_grid title="Ultimi episodi" posts_per_page="3" columns="3"]`
+
 == Installation ==
 
 1. Copia la cartella `pmi-events` in `wp-content/plugins/`
 2. Attiva il plugin da **Plugin** in wp-admin
-3. Crea eventi da **Eventi PMI**
-4. Inserisci `[pmi_calendar]` o `[pmi_calendar_full]` in una pagina o in Elementor (widget Shortcode)
+3. Crea eventi da **Eventi PMI** o episodi da **Podcast**
+4. Inserisci `[pmi_calendar]`, `[pmi_calendar_full]` o `[pmi_podcast_grid]` in una pagina o in Elementor (widget Shortcode)
 
 == Changelog ==
+
+= 1.5.0 =
+* Nuovo Custom Post Type `pmi_podcast` per gli episodi del podcast, con tassonomia categorie dedicata.
+* Meta box episodio: numero, ospiti, intervistatori, PDU, 6 link piattaforma fissi (Apple Podcast, Spotify, YouTube, YouTube Music, Amazon Music, Spreaker) con icone dedicate, più sezione "Altri link" illimitata e gestibile dall'admin.
+* Nuovo shortcode `[pmi_podcast_grid]`: griglia di card episodio in stile design system.
+* Nuovi tag dinamici Elementor (gruppo "PMI Podcast") per costruire il template della pagina episodio.
 
 = 1.4.0 =
 * Nuovi tag dinamici Elementor per costruire il template della pagina evento: Titolo, Descrizione breve, Categoria, Luogo, Organizzatore, Lingua, N. PDU, Prezzo soci, Prezzo non soci, Immagine copertina, URL iscrizione.

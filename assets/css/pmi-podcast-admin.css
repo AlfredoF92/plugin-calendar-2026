@@ -1,0 +1,94 @@
+/**
+ * PMI Podcast – wp-admin styles.
+ */
+
+.pmi-events-meta-grid {
+	display: grid;
+	gap: 1rem;
+}
+
+.pmi-events-meta-row {
+	margin: 0;
+}
+
+.pmi-events-meta-row .description {
+	display: block;
+	margin-top: 0.35rem;
+	color: #646970;
+}
+
+.pmi-events-meta-row input[type="url"],
+.pmi-events-meta-row input[type="text"] {
+	max-width: 100%;
+}
+
+.pmi-events-admin-missing {
+	color: #a7aaad;
+}
+
+.pmi-events-meta-row label {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	margin-bottom: 0.35rem;
+}
+
+.pmi-podcast-admin-icon {
+	--pmi-podcast-icon-color: #2b2b2b;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.4rem;
+	height: 1.4rem;
+	border-radius: 50%;
+	background: var(--pmi-podcast-icon-color);
+	color: #fff;
+	flex-shrink: 0;
+}
+
+.pmi-podcast-admin-icon svg {
+	width: 0.85rem;
+	height: 0.85rem;
+}
+
+.pmi-podcast-extra-links {
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+	margin-bottom: 0.75rem;
+}
+
+.pmi-podcast-extra-link-row {
+	display: grid;
+	grid-template-columns: 1fr 2fr auto;
+	gap: 0.5rem;
+	align-items: center;
+}
+
+.pmi-podcast-remove-link {
+	color: #b32d2e;
+	font-size: 1.2rem;
+	line-height: 1;
+	text-decoration: none;
+	padding: 0 0.35rem;
+}
+
+.pmi-podcast-remove-link:hover {
+	color: #dc3232;
+}
+
+.post-type-pmi_podcast .column-episode {
+	width: 6%;
+}
+
+.post-type-pmi_podcast .column-guests {
+	width: 22%;
+}
+
+.post-type-pmi_podcast .column-pdu {
+	width: 14%;
+}
+
+.post-type-pmi_podcast .column-platforms {
+	width: 10%;
+}
