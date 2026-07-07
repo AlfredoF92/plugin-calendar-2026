@@ -77,6 +77,21 @@ Esempio:
 
 `[pmi_podcast_grid title="Ultimi episodi" posts_per_page="3" columns="3"]`
 
+**Shortcode link ascolto episodio (template singolo)**
+
+`[pmi_podcast_links]`
+
+Elenca tutte le piattaforme dove ascoltare l'episodio corrente, con icona colorata e titolo (Apple Podcast, Spotify, YouTube, ecc. + eventuali link extra).
+
+Attributi opzionali:
+
+* `title` – titolo sopra l'elenco (default: Ascolta su)
+* `post_id` – ID episodio (default: post corrente nel template Elementor)
+
+Esempio per template episodio:
+
+`[pmi_podcast_links title="Il podcast è disponibile su:"]`
+
 == Installation ==
 
 1. Copia la cartella `pmi-events` in `wp-content/plugins/`

@@ -103,4 +103,77 @@ class PMI_Podcast_Icons {
 			self::get_icon_svg( $key )
 		);
 	}
+
+	/**
+	 * Render a list row with icon + platform title (for single episode template).
+	 *
+	 * @param string $key   Platform key or 'link'.
+	 * @param string $url   Target URL.
+	 * @param string $label Visible platform title.
+	 * @param string $color Optional icon background color.
+	 * @return string
+	 */
+	public static function render_list_item( $key, $url, $label, $color = '' ) {
+		if ( empty( $url ) ) {
+			return '';
+		}
+
+		$icon_style = $color ? sprintf( ' style="--pmi-podcast-icon-color:%s"', esc_attr( $color ) ) : '';
+
+		return sprintf(
+			'<a class="pmi-podcast-links__item pmi-podcast-links__item--%1$s" href="%2$s" target="_blank" rel="noopener noreferrer">%3$s<span class="pmi-podcast-links__label">%4$s</span></a>',
+			esc_attr( $key ),
+			esc_url( $url ),
+			sprintf(
+				'<span class="pmi-podcast-links__icon"%1$s aria-hidden="true">%2$s</span>',
+				$icon_style,
+				self::get_icon_svg( $key )
+			),
+			esc_html( $label )
+		);
+	}
+
+	/**
+	 * Collect all listening links for an episode.
+	 *
+	 * @param int $post_id Podcast post ID.
+	 * @return array<int,array{key:string,url:string,label:string,color:string}>
+	 */
+	public static function get_listening_links( $post_id ) {
+		$data      = PMI_Podcast_Meta_Boxes::get_podcast_data( $post_id );
+		$platforms = self::get_platforms();
+		$links     = array();
+
+		foreach ( $platforms as $key => $platform ) {
+			$url = isset( $data['links'][ $key ] ) ? $data['links'][ $key ] : '';
+
+			if ( empty( $url ) ) {
+				continue;
+			}
+
+			$links[] = array(
+				'key'   => $key,
+				'url'   => $url,
+				'label' => $platform['label'],
+				'color' => $platform['color'],
+			);
+		}
+
+		if ( ! empty( $data['extra_links'] ) && is_array( $data['extra_links'] ) ) {
+			foreach ( $data['extra_links'] as $extra ) {
+				if ( empty( $extra['url'] ) ) {
+					continue;
+				}
+
+				$links[] = array(
+					'key'   => 'link',
+					'url'   => $extra['url'],
+					'label' => ! empty( $extra['label'] ) ? $extra['label'] : __( 'Link', 'pmi-events' ),
+					'color' => '',
+				);
+			}
+		}
+
+		return $links;
+	}
 }
