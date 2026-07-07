@@ -231,6 +231,11 @@ class PMI_Podcast_Demo_Import {
 		update_post_meta( $post_id, PMI_Podcast_Meta_Boxes::META_GUESTS, $data['guests'] );
 		update_post_meta( $post_id, PMI_Podcast_Meta_Boxes::META_INTERVIEWERS, $data['interviewers'] );
 		update_post_meta( $post_id, PMI_Podcast_Meta_Boxes::META_PDU, $data['pdu'] );
+		update_post_meta(
+			$post_id,
+			PMI_Podcast_Meta_Boxes::META_YOUTUBE_VIDEO,
+			isset( $data['youtube_video'] ) ? esc_url_raw( $data['youtube_video'] ) : ''
+		);
 
 		foreach ( PMI_Podcast_Meta_Boxes::get_platform_meta_map() as $key => $meta_key ) {
 			$value = isset( $data['links'][ $key ] ) ? $data['links'][ $key ] : '';

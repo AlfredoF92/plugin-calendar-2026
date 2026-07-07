@@ -18,6 +18,7 @@ class PMI_Podcast_Shortcodes {
 	public static function register() {
 		add_shortcode( 'pmi_podcast_grid', array( __CLASS__, 'grid' ) );
 		add_shortcode( 'pmi_podcast_links', array( __CLASS__, 'links' ) );
+		add_shortcode( 'pmi_podcast_video', array( __CLASS__, 'video' ) );
 	}
 
 	/**
@@ -114,6 +115,49 @@ class PMI_Podcast_Shortcodes {
 
 		ob_start();
 		include PMI_EVENTS_DIR . 'templates/podcast-links.php';
+		return ob_get_clean();
+	}
+
+	/**
+	 * Embedded YouTube video for a single podcast episode.
+	 *
+	 * Use on the episode template page in Elementor (Shortcode widget).
+	 *
+	 * Attributes:
+	 * - post_id Optional post ID (default: current post in the loop).
+	 *
+	 * @param array $atts Shortcode attributes.
+	 * @return string
+	 */
+	public static function video( $atts ) {
+		$atts = shortcode_atts(
+			array(
+				'post_id' => 0,
+			),
+			$atts,
+			'pmi_podcast_video'
+		);
+
+		$post_id = (int) $atts['post_id'];
+
+		if ( $post_id <= 0 ) {
+			$post_id = get_the_ID();
+		}
+
+		if ( ! $post_id || PMI_Podcast_Post_Type::POST_TYPE !== get_post_type( $post_id ) ) {
+			return '';
+		}
+
+		$embed_html = PMI_Podcast_Video::get_embed_html( PMI_Podcast_Video::get_video_url( $post_id ) );
+
+		if ( '' === $embed_html ) {
+			return '';
+		}
+
+		PMI_Podcast_Assets::enqueue_grid();
+
+		ob_start();
+		include PMI_EVENTS_DIR . 'templates/podcast-video.php';
 		return ob_get_clean();
 	}
 }

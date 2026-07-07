@@ -266,3 +266,27 @@
 	font-weight: 600;
 	line-height: 1.3;
 }
+
+/* Single episode: embedded YouTube video */
+.pmi-podcast-video-shell {
+	font-family: var(--pmi-font-family, 'Azeret Mono', 'Segoe UI', Roboto, monospace);
+}
+
+.pmi-podcast-video {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	overflow: hidden;
+	border-radius: 10px;
+	background: #000;
+	box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+}
+
+.pmi-podcast-video iframe,
+.pmi-podcast-video .pmi-podcast-video__iframe {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}

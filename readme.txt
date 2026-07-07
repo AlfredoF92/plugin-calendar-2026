@@ -92,6 +92,16 @@ Esempio per template episodio:
 
 `[pmi_podcast_links title="Il podcast è disponibile su:"]`
 
+**Shortcode video YouTube episodio (template singolo)**
+
+`[pmi_podcast_video]`
+
+Mostra il player YouTube incorporato usando il link salvato nel campo "Video YouTube" dell'episodio.
+
+Attributi opzionali:
+
+* `post_id` – ID episodio (default: post corrente nel template Elementor)
+
 == Installation ==
 
 1. Copia la cartella `pmi-events` in `wp-content/plugins/`
@@ -100,6 +110,11 @@ Esempio per template episodio:
 4. Inserisci `[pmi_calendar]`, `[pmi_calendar_full]` o `[pmi_podcast_grid]` in una pagina o in Elementor (widget Shortcode)
 
 == Changelog ==
+
+= 1.5.3 =
+* Nuovo campo "Video YouTube" negli episodi podcast (separato dal link piattaforma di ascolto).
+* Nuovo shortcode `[pmi_podcast_video]` per incorporare il video nella pagina episodio.
+* Nuovo tag dinamico Elementor PMI Podcast: URL video YouTube.
 
 = 1.5.0 =
 * Nuovo Custom Post Type `pmi_podcast` per gli episodi del podcast, con tassonomia categorie dedicata.

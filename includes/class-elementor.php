@@ -27,6 +27,8 @@ class PMI_Events_Elementor {
 			return;
 		}
 
+		add_action( 'init', array( __CLASS__, 'enable_cpt_support' ), 20 );
+
 		require_once PMI_EVENTS_DIR . 'includes/class-formatter.php';
 		require_once PMI_EVENTS_DIR . 'includes/elementor/class-dynamic-tag-base.php';
 		require_once PMI_EVENTS_DIR . 'includes/elementor/class-dynamic-tag-datetime.php';
@@ -37,6 +39,7 @@ class PMI_Events_Elementor {
 		require_once PMI_EVENTS_DIR . 'includes/elementor/class-dynamic-tag-podcast-fields.php';
 		require_once PMI_EVENTS_DIR . 'includes/elementor/class-dynamic-tag-podcast-image.php';
 		require_once PMI_EVENTS_DIR . 'includes/elementor/class-dynamic-tag-podcast-links.php';
+		require_once PMI_EVENTS_DIR . 'includes/elementor/class-dynamic-tag-podcast-video.php';
 
 		add_action( 'elementor/dynamic_tags/register', array( __CLASS__, 'register_dynamic_tags' ) );
 	}
@@ -82,11 +85,47 @@ class PMI_Events_Elementor {
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Pdu() );
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Category() );
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Image() );
+		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Youtube_Video_Url() );
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Link_Apple() );
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Link_Spotify() );
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Link_Youtube() );
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Link_Youtube_Music() );
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Link_Amazon_Music() );
 		$dynamic_tags_manager->register( new PMI_Podcast_Elementor_Tag_Link_Spreaker() );
+	}
+
+	/**
+	 * Ensure PMI CPTs are enabled in Elementor (Settings → Post Types).
+	 */
+	public static function enable_cpt_support() {
+		$cpts = array(
+			PMI_Events_Post_Type::POST_TYPE,
+			PMI_Podcast_Post_Type::POST_TYPE,
+		);
+
+		$supported = get_option( 'elementor_cpt_support', array( 'post', 'page' ) );
+
+		if ( ! is_array( $supported ) ) {
+			$supported = array( 'post', 'page' );
+		}
+
+		$changed = false;
+
+		foreach ( $cpts as $cpt ) {
+			if ( ! post_type_exists( $cpt ) ) {
+				continue;
+			}
+
+			add_post_type_support( $cpt, 'elementor' );
+
+			if ( ! in_array( $cpt, $supported, true ) ) {
+				$supported[] = $cpt;
+				$changed     = true;
+			}
+		}
+
+		if ( $changed ) {
+			update_option( 'elementor_cpt_support', $supported );
+		}
 	}
 }

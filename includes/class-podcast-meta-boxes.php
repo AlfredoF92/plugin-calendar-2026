@@ -16,6 +16,7 @@ class PMI_Podcast_Meta_Boxes {
 	const META_GUESTS           = '_pmi_podcast_guests';
 	const META_INTERVIEWERS     = '_pmi_podcast_interviewers';
 	const META_PDU              = '_pmi_podcast_pdu';
+	const META_YOUTUBE_VIDEO    = '_pmi_podcast_youtube_video';
 	const META_LINK_APPLE       = '_pmi_podcast_link_apple';
 	const META_LINK_SPOTIFY     = '_pmi_podcast_link_spotify';
 	const META_LINK_YOUTUBE     = '_pmi_podcast_link_youtube';
@@ -97,6 +98,11 @@ class PMI_Podcast_Meta_Boxes {
 			<p class="pmi-events-meta-row">
 				<label for="pmi_podcast_interviewers"><strong><?php esc_html_e( 'Intervista a cura di', 'pmi-events' ); ?></strong></label>
 				<input type="text" id="pmi_podcast_interviewers" name="pmi_podcast_interviewers" class="large-text" value="<?php echo esc_attr( $fields['interviewers'] ); ?>" placeholder="<?php esc_attr_e( 'Es. Valerio Casalini, Michela Lorenzi', 'pmi-events' ); ?>">
+			</p>
+			<p class="pmi-events-meta-row">
+				<label for="pmi_podcast_youtube_video"><strong><?php esc_html_e( 'Video YouTube', 'pmi-events' ); ?></strong></label>
+				<input type="url" id="pmi_podcast_youtube_video" name="pmi_podcast_youtube_video" class="large-text code" value="<?php echo esc_attr( $fields['youtube_video'] ); ?>" placeholder="https://www.youtube.com/watch?v=...">
+				<span class="description"><?php esc_html_e( 'Link del video da mostrare nella pagina episodio (embed). Diverso dal link piattaforma YouTube per l\'ascolto.', 'pmi-events' ); ?></span>
 			</p>
 		</div>
 		<?php
@@ -204,6 +210,7 @@ class PMI_Podcast_Meta_Boxes {
 			'guests'         => get_post_meta( $post_id, self::META_GUESTS, true ),
 			'interviewers'   => get_post_meta( $post_id, self::META_INTERVIEWERS, true ),
 			'pdu'            => get_post_meta( $post_id, self::META_PDU, true ),
+			'youtube_video'  => get_post_meta( $post_id, self::META_YOUTUBE_VIDEO, true ),
 			'links'          => $links,
 			'extra_links'    => $extra_links,
 		);
@@ -232,11 +239,13 @@ class PMI_Podcast_Meta_Boxes {
 		$guests         = isset( $_POST['pmi_podcast_guests'] ) ? sanitize_text_field( wp_unslash( $_POST['pmi_podcast_guests'] ) ) : '';
 		$interviewers   = isset( $_POST['pmi_podcast_interviewers'] ) ? sanitize_text_field( wp_unslash( $_POST['pmi_podcast_interviewers'] ) ) : '';
 		$pdu            = isset( $_POST['pmi_podcast_pdu'] ) ? sanitize_text_field( wp_unslash( $_POST['pmi_podcast_pdu'] ) ) : '';
+		$youtube_video  = isset( $_POST['pmi_podcast_youtube_video'] ) ? esc_url_raw( wp_unslash( $_POST['pmi_podcast_youtube_video'] ) ) : '';
 
 		update_post_meta( $post_id, self::META_EPISODE_NUMBER, $episode_number );
 		update_post_meta( $post_id, self::META_GUESTS, $guests );
 		update_post_meta( $post_id, self::META_INTERVIEWERS, $interviewers );
 		update_post_meta( $post_id, self::META_PDU, $pdu );
+		update_post_meta( $post_id, self::META_YOUTUBE_VIDEO, $youtube_video );
 
 		foreach ( self::get_platform_meta_map() as $key => $meta_key ) {
 			$field = 'pmi_podcast_link_' . $key;
